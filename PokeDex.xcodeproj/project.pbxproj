@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CE3F1F722C0F8F6600888F4D /* PokèDex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PokèDex.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE3F1F722C0F8F6600888F4D /* PokeDex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeDex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3F1F752C0F8F6600888F4D /* PokeDexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDexApp.swift; sourceTree = "<group>"; };
 		CE3F1F772C0F8F6600888F4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CE3F1F792C0F8F6800888F4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 		CE3F1F692C0F8F6600888F4D = {
 			isa = PBXGroup;
 			children = (
-				CE3F1F742C0F8F6600888F4D /* PokèDex */,
+				CE3F1F742C0F8F6600888F4D /* PokeDex */,
 				CE3F1F732C0F8F6600888F4D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,12 +51,12 @@
 		CE3F1F732C0F8F6600888F4D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE3F1F722C0F8F6600888F4D /* PokèDex.app */,
+				CE3F1F722C0F8F6600888F4D /* PokeDex.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE3F1F742C0F8F6600888F4D /* PokèDex */ = {
+		CE3F1F742C0F8F6600888F4D /* PokeDex */ = {
 			isa = PBXGroup;
 			children = (
 				CE3F1F752C0F8F6600888F4D /* PokeDexApp.swift */,
@@ -68,7 +68,7 @@
 				CE3F1F792C0F8F6800888F4D /* Assets.xcassets */,
 				CE3F1F7B2C0F8F6800888F4D /* Preview Content */,
 			);
-			path = "PokèDex";
+			path = PokeDex;
 			sourceTree = "<group>";
 		};
 		CE3F1F7B2C0F8F6800888F4D /* Preview Content */ = {
@@ -82,9 +82,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CE3F1F712C0F8F6600888F4D /* PokèDex */ = {
+		CE3F1F712C0F8F6600888F4D /* PokeDex */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE3F1F802C0F8F6800888F4D /* Build configuration list for PBXNativeTarget "PokèDex" */;
+			buildConfigurationList = CE3F1F802C0F8F6800888F4D /* Build configuration list for PBXNativeTarget "PokeDex" */;
 			buildPhases = (
 				CE3F1F6E2C0F8F6600888F4D /* Sources */,
 				CE3F1F6F2C0F8F6600888F4D /* Frameworks */,
@@ -94,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = "PokèDex";
+			name = PokeDex;
 			productName = "PokèDex";
-			productReference = CE3F1F722C0F8F6600888F4D /* PokèDex.app */;
+			productReference = CE3F1F722C0F8F6600888F4D /* PokeDex.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -114,7 +114,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CE3F1F6D2C0F8F6600888F4D /* Build configuration list for PBXProject "PokèDex" */;
+			buildConfigurationList = CE3F1F6D2C0F8F6600888F4D /* Build configuration list for PBXProject "PokeDex" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -127,7 +127,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CE3F1F712C0F8F6600888F4D /* PokèDex */,
+				CE3F1F712C0F8F6600888F4D /* PokeDex */,
 			);
 		};
 /* End PBXProject section */
@@ -282,7 +282,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PokèDex/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"PokeDex/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -310,7 +310,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PokèDex/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"PokeDex/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -334,7 +334,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CE3F1F6D2C0F8F6600888F4D /* Build configuration list for PBXProject "PokèDex" */ = {
+		CE3F1F6D2C0F8F6600888F4D /* Build configuration list for PBXProject "PokeDex" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE3F1F7E2C0F8F6800888F4D /* Debug */,
@@ -343,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE3F1F802C0F8F6800888F4D /* Build configuration list for PBXNativeTarget "PokèDex" */ = {
+		CE3F1F802C0F8F6800888F4D /* Build configuration list for PBXNativeTarget "PokeDex" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE3F1F812C0F8F6800888F4D /* Debug */,

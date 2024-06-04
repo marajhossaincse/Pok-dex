@@ -5,12 +5,12 @@ struct PokemonReponse: Codable {
     let count: Int
     let next: String
     let previous: String
-    let results: [Result]
+    let results: [Pokemon]
 }
 
-// MARK: - Result
+// MARK: - Pokemon
 
-struct Result: Codable, Hashable{
+struct Pokemon: Codable, Hashable{
     let name: String
     let url: String
 }
