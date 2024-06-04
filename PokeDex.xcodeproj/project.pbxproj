@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE2F5B252C0F9E3E00CF83B9 /* PokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2F5B242C0F9E3E00CF83B9 /* PokemonViewModel.swift */; };
 		CE3F1F762C0F8F6600888F4D /* PokeDexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F1F752C0F8F6600888F4D /* PokeDexApp.swift */; };
 		CE3F1F782C0F8F6600888F4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F1F772C0F8F6600888F4D /* ContentView.swift */; };
 		CE3F1F7A2C0F8F6800888F4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE3F1F792C0F8F6800888F4D /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE2F5B242C0F9E3E00CF83B9 /* PokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewModel.swift; sourceTree = "<group>"; };
 		CE3F1F722C0F8F6600888F4D /* PokeDex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeDex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3F1F752C0F8F6600888F4D /* PokeDexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDexApp.swift; sourceTree = "<group>"; };
 		CE3F1F772C0F8F6600888F4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				CE3F1F772C0F8F6600888F4D /* ContentView.swift */,
 				CE3F1F832C0F8F8500888F4D /* HomeView.swift */,
 				CE3F1F852C0F8FAA00888F4D /* PokemonDetailsScreen.swift */,
+				CE2F5B242C0F9E3E00CF83B9 /* PokemonViewModel.swift */,
 				CE3F1F872C0F902E00888F4D /* PokemonResponse.swift */,
 				CE3F1F892C0F90EE00888F4D /* PokemonMockData.json */,
 				CE3F1F792C0F8F6800888F4D /* Assets.xcassets */,
@@ -152,6 +155,7 @@
 			files = (
 				CE3F1F862C0F8FAA00888F4D /* PokemonDetailsScreen.swift in Sources */,
 				CE3F1F842C0F8F8500888F4D /* HomeView.swift in Sources */,
+				CE2F5B252C0F9E3E00CF83B9 /* PokemonViewModel.swift in Sources */,
 				CE3F1F782C0F8F6600888F4D /* ContentView.swift in Sources */,
 				CE3F1F882C0F902E00888F4D /* PokemonResponse.swift in Sources */,
 				CE3F1F762C0F8F6600888F4D /* PokeDexApp.swift in Sources */,
@@ -283,6 +287,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PokeDex/Preview Content\"";
+				DEVELOPMENT_TEAM = U6ZR7ZT3Y7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -311,6 +316,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PokeDex/Preview Content\"";
+				DEVELOPMENT_TEAM = U6ZR7ZT3Y7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

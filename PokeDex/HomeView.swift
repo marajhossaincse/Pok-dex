@@ -8,23 +8,35 @@
 import SwiftUI
 
 struct HomeView: View {
-    let pokemons: [Pokemon] = [
-        Pokemon(name: "Pokemon 1", url: ""),
-        Pokemon(name: "Pokemon 2", url: ""),
-        Pokemon(name: "Pokemon 3", url: "")
-    ]
+//    let pokemons: [Pokemon] = [
+//        Pokemon(name: "Pokemon 1", url: ""),
+//        Pokemon(name: "Pokemon 2", url: ""),
+//        Pokemon(name: "Pokemon 3", url: "")
+//    ]
+
+    @ObservedObject var viewModel = PokemonViewModel()
 
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach(pokemons, id: \.self) { pokemon in
+                ForEach(viewModel.pokemons, id: \.self) { pokemon in
                     NavigationLink {
                         PokemonDetailsScreen()
                     } label: {
-                        Text(pokemon.name)
+                        HStack {
+                            Text(pokemon.name.capitalized)
+                            Spacer()
+//                            Image(pokemon.url)
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                        }
                     }
                 }
             }
+        }
+        .onAppear {
+            viewModel.fetchPokemonsFromMock(completion: {})
         }
     }
 }
