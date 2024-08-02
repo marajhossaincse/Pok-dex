@@ -9,6 +9,20 @@ import SwiftUI
 
 struct PokemonDetailsScreen: View {
     var body: some View {
+        VStack {
+            // Picture
+            
+            // Name
+            
+            // Height and Weight
+            
+            // Abilities
+            
+            // Moves
+            
+            //
+        }
+        
         InProgressScreen()
     }
 }
