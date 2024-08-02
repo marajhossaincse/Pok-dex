@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PokemonDetailsScreen: View {
     var body: some View {
-        Text("Pokemon Details Screen!")
+        InProgressScreen()
     }
 }
 

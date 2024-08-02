@@ -25,7 +25,7 @@ struct HomeView: View {
                                     .frame(width: 50, height: 50)
                                     .clipShape(Circle())
                                     .overlay(
-                                        Circle().stroke(Color.gray, lineWidth: 2) // Border outline
+                                        Circle().stroke(Color.gray, lineWidth: 2)
                                     )
 
                                 Text(pokemon.name.capitalized)
