@@ -10,7 +10,7 @@ struct PokemonReponse: Codable {
 
 // MARK: - Pokemon
 
-struct Pokemon: Codable, Hashable{
+struct Pokemon: Codable, Hashable {
     let name: String
     let url: String
 }
