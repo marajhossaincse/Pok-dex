@@ -9,26 +9,31 @@ import SwiftUI
 
 struct PokemonDetailsScreen: View {
     var body: some View {
-        VStack {
-            // Picture
-            
-            // Name
-            
-            // Height and Weight
-            
-            // Abilities
-            
-            // Moves
-            
-            //
+        ScrollView {
+            VStack(spacing: 0) {
+                Rectangle()
+                    .fill(.red)
+                    .frame(height: 250)
+                    .overlay {
+                        #warning("Replace shape with Image")
+                        Circle()
+                            .fill(Color.blue)
+                            .frame(
+                                width: 250,
+                                height: 200)
+                            .offset(y: 125)
+                    }
+            }
         }
-        
-        InProgressScreen()
+        .edgesIgnoringSafeArea(.all)
+        .navigationTitle("Pokemon Name")
     }
 }
 
 struct PokemonDetailsScreen_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonDetailsScreen()
+        NavigationView {
+            PokemonDetailsScreen()
+        }
     }
 }
