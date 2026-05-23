@@ -9,4 +9,9 @@ final class PokemonRepository: PokemonRepositoryProtocol {
         let dto: PokemonListDTO = try await apiClient.request(.pokemonList(limit: limit, offset: offset))
         return PokemonMapper.toDomain(dto)
     }
+
+    func fetchPokemonDetail(name: String) async throws -> PokemonDetailModel {
+        let dto: PokemonDetailDTO = try await apiClient.request(.pokemonDetail(name: name))
+        return PokemonDetailMapper.toDomain(dto)
+    }
 }

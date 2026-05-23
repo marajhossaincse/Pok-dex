@@ -7,7 +7,7 @@ struct HomeViewModelTests {
     @Test("loadInitial populates pokemons on success")
     func loadInitialSuccess() async {
         let mockRepo = MockPokemonRepository()
-        mockRepo.result = TestFixtures.makeListModel()
+        mockRepo.listResult = TestFixtures.makeListModel()
 
         let vm = HomeViewModel(repository: mockRepo)
         await vm.loadInitial()
@@ -34,12 +34,12 @@ struct HomeViewModelTests {
     @Test("loadMore appends new pokemons to the existing list")
     func loadMoreAppends() async {
         let mockRepo = MockPokemonRepository()
-        mockRepo.result = TestFixtures.makeListModel(hasMore: true)
+        mockRepo.listResult = TestFixtures.makeListModel(hasMore: true)
 
         let vm = HomeViewModel(repository: mockRepo)
         await vm.loadInitial()
 
-        mockRepo.result = PokemonListModel(
+        mockRepo.listResult = PokemonListModel(
             pokemons: [TestFixtures.makePokemonModel(id: "2", name: "ivysaur")],
             hasMore: false
         )
@@ -52,7 +52,7 @@ struct HomeViewModelTests {
     @Test("loadMore does not fetch when the last page has been reached")
     func loadMoreSkipsWhenNoMore() async {
         let mockRepo = MockPokemonRepository()
-        mockRepo.result = TestFixtures.makeListModel(hasMore: false)
+        mockRepo.listResult = TestFixtures.makeListModel(hasMore: false)
 
         let vm = HomeViewModel(repository: mockRepo)
         await vm.loadInitial()
@@ -65,7 +65,7 @@ struct HomeViewModelTests {
     @Test("loadInitial sends offset=0 and the configured limit")
     func loadInitialPassesCorrectPagination() async {
         let mockRepo = MockPokemonRepository()
-        mockRepo.result = TestFixtures.makeListModel()
+        mockRepo.listResult = TestFixtures.makeListModel()
 
         let vm = HomeViewModel(repository: mockRepo)
         await vm.loadInitial()
@@ -77,7 +77,7 @@ struct HomeViewModelTests {
     @Test("loadMore sends the next page offset after the initial fetch")
     func loadMoreIncrementsOffset() async {
         let mockRepo = MockPokemonRepository()
-        mockRepo.result = TestFixtures.makeListModel(hasMore: true)
+        mockRepo.listResult = TestFixtures.makeListModel(hasMore: true)
 
         let vm = HomeViewModel(repository: mockRepo)
         await vm.loadInitial()
@@ -89,13 +89,13 @@ struct HomeViewModelTests {
     @Test("Calling loadInitial again resets the list to the new result")
     func loadInitialResetsExistingList() async {
         let mockRepo = MockPokemonRepository()
-        mockRepo.result = TestFixtures.makeListModel()
+        mockRepo.listResult = TestFixtures.makeListModel()
 
         let vm = HomeViewModel(repository: mockRepo)
         await vm.loadInitial()
         #expect(vm.pokemons.count == 1)
 
-        mockRepo.result = PokemonListModel(
+        mockRepo.listResult = PokemonListModel(
             pokemons: [TestFixtures.makePokemonModel(id: "2", name: "ivysaur")],
             hasMore: false
         )
@@ -108,7 +108,7 @@ struct HomeViewModelTests {
     @Test("loadMore error does not wipe the existing pokemon list")
     func loadMoreErrorPreservesExistingList() async {
         let mockRepo = MockPokemonRepository()
-        mockRepo.result = TestFixtures.makeListModel(hasMore: true)
+        mockRepo.listResult = TestFixtures.makeListModel(hasMore: true)
 
         let vm = HomeViewModel(repository: mockRepo)
         await vm.loadInitial()
