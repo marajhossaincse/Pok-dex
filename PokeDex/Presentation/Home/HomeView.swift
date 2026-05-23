@@ -77,20 +77,44 @@ struct PokemonRowView: View {
 
     var body: some View {
         HStack(spacing: 16) {
-            Circle()
-                .fill(Color.red.opacity(0.8))
-                .frame(width: 36, height: 36)
-                .overlay(
-                    Text("#\(pokemon.id)")
-                        .font(.caption2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                )
-            Text(pokemon.name.capitalized)
-                .font(.body)
-                .fontWeight(.medium)
+            spriteImage
+            VStack(alignment: .leading, spacing: 2) {
+                Text(pokemon.name.capitalized)
+                    .font(.headline)
+                Text(formattedID)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
             Spacer()
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 6)
+    }
+
+    private var spriteImage: some View {
+        AsyncImage(url: URL(string: pokemon.spriteURL)) { phase in
+            switch phase {
+            case .success(let image):
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .padding(4)
+            case .failure:
+                Image(systemName: "photo")
+                    .font(.system(size: 28))
+                    .foregroundStyle(.secondary)
+            case .empty:
+                ProgressView()
+            @unknown default:
+                EmptyView()
+            }
+        }
+        .frame(width: 64, height: 64)
+        .background(Color(.systemGray6))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    private var formattedID: String {
+        guard let number = Int(pokemon.id) else { return "#\(pokemon.id)" }
+        return String(format: "#%04d", number)
     }
 }

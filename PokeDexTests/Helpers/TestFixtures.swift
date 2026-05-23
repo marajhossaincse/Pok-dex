@@ -26,7 +26,12 @@ enum TestFixtures {
     """.utf8)
 
     static func makePokemonModel(id: String = "1", name: String = "bulbasaur") -> PokemonModel {
-        PokemonModel(id: id, name: name, url: "https://pokeapi.co/api/v2/pokemon/\(id)/")
+        PokemonModel(
+            id: id,
+            name: name,
+            url: "https://pokeapi.co/api/v2/pokemon/\(id)/",
+            spriteURL: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
+        )
     }
 
     static func makeListModel(

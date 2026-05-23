@@ -12,6 +12,13 @@ struct PokemonMapperTests {
         #expect(model.url == "https://pokeapi.co/api/v2/pokemon/1/")
     }
 
+    @Test("Builds the correct official artwork URL from the extracted ID")
+    func buildsSpriteURLFromID() {
+        let dto = PokemonDTO(name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/")
+        let model = PokemonMapper.toDomain(dto)
+        #expect(model.spriteURL == "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png")
+    }
+
     @Test("Sets hasMore true when next URL is present")
     func hasMoreTrueWhenNextPresent() {
         let dto = PokemonListDTO(count: 100, next: "some-url", previous: nil, results: [])

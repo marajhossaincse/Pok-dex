@@ -1,4 +1,7 @@
 enum PokemonMapper {
+    private static let artworkBaseURL =
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork"
+
     static func toDomain(_ dto: PokemonListDTO) -> PokemonListModel {
         PokemonListModel(
             pokemons: dto.results.map(toDomain),
@@ -12,6 +15,11 @@ enum PokemonMapper {
             .split(separator: "/")
             .last
             .map(String.init) ?? dto.name
-        return PokemonModel(id: id, name: dto.name, url: dto.url)
+        return PokemonModel(
+            id: id,
+            name: dto.name,
+            url: dto.url,
+            spriteURL: "\(artworkBaseURL)/\(id).png"
+        )
     }
 }
