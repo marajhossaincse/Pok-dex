@@ -17,7 +17,8 @@ enum PokemonDetailMapper {
             abilities: dto.abilities
                 .sorted { !$0.isHidden && $1.isHidden }
                 .map { PokemonAbility(name: $0.ability.name, isHidden: $0.isHidden) },
-            spriteURL: "\(artworkBaseURL)/\(dto.id).png"
+            spriteURL: "\(artworkBaseURL)/\(dto.id).png",
+            speciesURL: dto.species.url
         )
     }
 }

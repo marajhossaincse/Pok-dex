@@ -101,6 +101,9 @@ struct PokemonDetailView: View {
         measurementsSection(detail)
         abilitiesSection(detail.abilities)
         statsSection(detail.stats)
+        if let chain = viewModel.evolutionChain {
+            evolutionSection(chain)
+        }
     }
 
     // MARK: - Types
@@ -195,6 +198,66 @@ struct PokemonDetailView: View {
                 }
             }
         }
+    }
+
+    // MARK: - Evolution Chain
+
+    private func evolutionSection(_ chain: EvolutionChainModel) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            sectionHeader("Evolution")
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .center, spacing: 4) {
+                    ForEach(chain.stages.indices, id: \.self) { index in
+                        if index > 0 {
+                            Image(systemName: "chevron.right")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                                .padding(.horizontal, 2)
+                        }
+                        VStack(spacing: 8) {
+                            ForEach(chain.stages[index], id: \.id) { stage in
+                                evolutionCell(stage)
+                            }
+                        }
+                    }
+                }
+                .padding(.horizontal, 4)
+                .padding(.vertical, 4)
+            }
+        }
+    }
+
+    private func evolutionCell(_ stage: EvolutionStage) -> some View {
+        let isCurrent = stage.name.lowercased() == pokemon.name.lowercased()
+        return VStack(spacing: 6) {
+            AsyncImage(url: URL(string: stage.spriteURL)) { phase in
+                switch phase {
+                case .success(let image):
+                    image.resizable().scaledToFit()
+                case .failure:
+                    Image(systemName: "questionmark")
+                        .font(.title2)
+                        .foregroundStyle(.secondary)
+                default:
+                    ProgressView()
+                }
+            }
+            .frame(width: 72, height: 72)
+
+            Text(stage.name.capitalized)
+                .font(.caption)
+                .fontWeight(isCurrent ? .bold : .regular)
+                .foregroundStyle(isCurrent ? Color.indigo : .primary)
+                .multilineTextAlignment(.center)
+        }
+        .frame(width: 92)
+        .padding(.vertical, 10)
+        .background(isCurrent ? Color.indigo.opacity(0.12) : Color(.systemGray6))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(isCurrent ? Color.indigo : Color.clear, lineWidth: 2)
+        )
     }
 
     // MARK: - Error

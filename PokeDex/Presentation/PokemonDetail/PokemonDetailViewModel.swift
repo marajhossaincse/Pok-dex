@@ -3,6 +3,7 @@ import Foundation
 @MainActor
 final class PokemonDetailViewModel: ObservableObject {
     @Published private(set) var detail: PokemonDetailModel?
+    @Published private(set) var evolutionChain: EvolutionChainModel?
     @Published private(set) var isLoading = false
     @Published private(set) var errorMessage: String?
 
@@ -22,6 +23,7 @@ final class PokemonDetailViewModel: ObservableObject {
 
         do {
             detail = try await repository.fetchPokemonDetail(name: pokemonName)
+            evolutionChain = try? await repository.fetchEvolutionChain(speciesURL: detail!.speciesURL)
         } catch {
             errorMessage = error.localizedDescription
         }

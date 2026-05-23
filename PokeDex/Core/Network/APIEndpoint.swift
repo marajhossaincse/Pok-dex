@@ -3,6 +3,8 @@ import Foundation
 enum APIEndpoint {
     case pokemonList(limit: Int, offset: Int)
     case pokemonDetail(name: String)
+    case pokemonSpecies(url: String)
+    case evolutionChain(url: String)
 
     private static let baseURL = "https://pokeapi.co/api/v2"
 
@@ -21,6 +23,9 @@ enum APIEndpoint {
                 guard let url = URL(string: "\(Self.baseURL)/pokemon/\(name)") else {
                     throw APIError.invalidURL
                 }
+                return url
+            case .pokemonSpecies(let urlString), .evolutionChain(let urlString):
+                guard let url = URL(string: urlString) else { throw APIError.invalidURL }
                 return url
             }
         }

@@ -6,6 +6,11 @@ struct PokemonDetailDTO: Decodable {
     let types: [PokemonTypeSlotDTO]
     let stats: [PokemonStatDTO]
     let abilities: [PokemonAbilitySlotDTO]
+    let species: PokemonSpeciesReferenceDTO
+}
+
+struct PokemonSpeciesReferenceDTO: Decodable {
+    let url: String
 }
 
 struct PokemonTypeSlotDTO: Decodable {

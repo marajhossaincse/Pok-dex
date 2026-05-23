@@ -7,6 +7,7 @@ struct PokemonDetailModel {
     let stats: [PokemonStat]
     let abilities: [PokemonAbility]
     let spriteURL: String
+    let speciesURL: String
 }
 
 struct PokemonStat {

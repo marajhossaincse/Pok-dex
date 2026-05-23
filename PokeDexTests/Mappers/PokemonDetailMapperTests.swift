@@ -10,7 +10,8 @@ struct PokemonDetailMapperTests {
         weight: Int = 69,
         types: [(slot: Int, name: String)] = [(1, "grass"), (2, "poison")],
         stats: [(name: String, value: Int)] = [("hp", 45), ("attack", 49)],
-        abilities: [(name: String, hidden: Bool)] = [("overgrow", false), ("chlorophyll", true)]
+        abilities: [(name: String, hidden: Bool)] = [("overgrow", false), ("chlorophyll", true)],
+        speciesURL: String = "https://pokeapi.co/api/v2/pokemon-species/1/"
     ) -> PokemonDetailDTO {
         PokemonDetailDTO(
             id: id,
@@ -19,7 +20,8 @@ struct PokemonDetailMapperTests {
             weight: weight,
             types: types.map { PokemonTypeSlotDTO(slot: $0.slot, type: PokemonTypeInfoDTO(name: $0.name)) },
             stats: stats.map { PokemonStatDTO(baseStat: $0.value, stat: PokemonStatInfoDTO(name: $0.name)) },
-            abilities: abilities.map { PokemonAbilitySlotDTO(ability: PokemonAbilityInfoDTO(name: $0.name), isHidden: $0.hidden) }
+            abilities: abilities.map { PokemonAbilitySlotDTO(ability: PokemonAbilityInfoDTO(name: $0.name), isHidden: $0.hidden) },
+            species: PokemonSpeciesReferenceDTO(url: speciesURL)
         )
     }
 
@@ -63,5 +65,12 @@ struct PokemonDetailMapperTests {
     func buildsSpriteURL() {
         let model = PokemonDetailMapper.toDomain(makeDTO(id: 25))
         #expect(model.spriteURL == "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png")
+    }
+
+    @Test("Maps speciesURL directly from the species reference")
+    func mapsSpeciesURL() {
+        let dto = makeDTO(speciesURL: "https://pokeapi.co/api/v2/pokemon-species/25/")
+        let model = PokemonDetailMapper.toDomain(dto)
+        #expect(model.speciesURL == "https://pokeapi.co/api/v2/pokemon-species/25/")
     }
 }
