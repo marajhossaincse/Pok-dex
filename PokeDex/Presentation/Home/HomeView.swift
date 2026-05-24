@@ -160,7 +160,7 @@ struct PokemonRowView: View {
     }
 
     private var spriteImage: some View {
-        AsyncImage(url: URL(string: pokemon.spriteURL)) { phase in
+        CachedAsyncImage(url: URL(string: pokemon.spriteURL)) { phase in
             switch phase {
             case .success(let image):
                 image

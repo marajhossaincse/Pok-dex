@@ -30,7 +30,7 @@ struct PokemonDetailView: View {
     private var artworkHeader: some View {
         ZStack {
             headerBackground
-            AsyncImage(url: URL(string: pokemon.spriteURL)) { phase in
+            CachedAsyncImage(url: URL(string: pokemon.spriteURL)) { phase in
                 switch phase {
                 case .success(let image):
                     image.resizable().scaledToFit()
@@ -230,7 +230,7 @@ struct PokemonDetailView: View {
     private func evolutionCell(_ stage: EvolutionStage) -> some View {
         let isCurrent = stage.name.lowercased() == pokemon.name.lowercased()
         return VStack(spacing: 6) {
-            AsyncImage(url: URL(string: stage.spriteURL)) { phase in
+            CachedAsyncImage(url: URL(string: stage.spriteURL)) { phase in
                 switch phase {
                 case .success(let image):
                     image.resizable().scaledToFit()

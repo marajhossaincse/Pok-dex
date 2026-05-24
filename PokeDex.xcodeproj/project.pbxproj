@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		710660D42FC38A80001A6229 /* PokemonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710660D32FC38A80001A6229 /* PokemonType.swift */; };
 		710660D62FC38A9C001A6229 /* PokemonTypeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710660D52FC38A9C001A6229 /* PokemonTypeDTO.swift */; };
+		710660D92FC38FE9001A6229 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710660D72FC38FE9001A6229 /* ImageCache.swift */; };
+		710660DC2FC3901E001A6229 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710660DA2FC3901E001A6229 /* CachedAsyncImage.swift */; };
 		AAAA0000000000000000000C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000001 /* APIError.swift */; };
 		AAAA0000000000000000000D /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000002 /* APIEndpoint.swift */; };
 		AAAA0000000000000000000E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000003 /* APIClient.swift */; };
@@ -46,6 +48,8 @@
 /* Begin PBXFileReference section */
 		710660D32FC38A80001A6229 /* PokemonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonType.swift; sourceTree = "<group>"; };
 		710660D52FC38A9C001A6229 /* PokemonTypeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeDTO.swift; sourceTree = "<group>"; };
+		710660D72FC38FE9001A6229 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		710660DA2FC3901E001A6229 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		71E8F8932FC1F2A600A77B96 /* PokeDexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokeDexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAAA00000000000000000001 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		AAAA00000000000000000002 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -94,10 +98,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		710660D82FC38FE9001A6229 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				710660D72FC38FE9001A6229 /* ImageCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		710660DB2FC3901E001A6229 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				710660DA2FC3901E001A6229 /* CachedAsyncImage.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		AAAA00000000000000000017 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				AAAA00000000000000000018 /* Network */,
+				710660D82FC38FE9001A6229 /* Cache */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -185,6 +206,7 @@
 			children = (
 				AAAA00000000000000000021 /* Home */,
 				AAAA00000000000000000022 /* PokemonDetail */,
+				710660DB2FC3901E001A6229 /* Components */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -369,11 +391,13 @@
 				AAAA00000000000000000011 /* PokemonListDTO.swift in Sources */,
 				AAAA00000000000000000012 /* PokemonMapper.swift in Sources */,
 				AAAA00000000000000000013 /* PokemonRepository.swift in Sources */,
+				710660DC2FC3901E001A6229 /* CachedAsyncImage.swift in Sources */,
 				AAAA00000000000000000014 /* HomeViewModel.swift in Sources */,
 				AAAA00000000000000000015 /* HomeView.swift in Sources */,
 				AAAA00000000000000000016 /* PokemonDetailView.swift in Sources */,
 				BBBB00000000000000000005 /* PokemonDetailModel.swift in Sources */,
 				BBBB00000000000000000006 /* PokemonDetailDTO.swift in Sources */,
+				710660D92FC38FE9001A6229 /* ImageCache.swift in Sources */,
 				710660D62FC38A9C001A6229 /* PokemonTypeDTO.swift in Sources */,
 				BBBB00000000000000000007 /* PokemonDetailMapper.swift in Sources */,
 				BBBB00000000000000000008 /* PokemonDetailViewModel.swift in Sources */,
