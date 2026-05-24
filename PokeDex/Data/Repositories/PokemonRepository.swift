@@ -20,4 +20,11 @@ final class PokemonRepository: PokemonRepositoryProtocol {
         let chain: EvolutionChainDTO = try await apiClient.request(.evolutionChain(url: species.evolutionChain.url))
         return EvolutionChainMapper.toDomain(chain)
     }
+
+    func fetchPokemonsByType(_ type: String) async throws -> [PokemonModel] {
+        let dto: PokemonTypeDTO = try await apiClient.request(.pokemonType(name: type))
+        return dto.pokemon.map { entry in
+            PokemonMapper.toDomain(PokemonDTO(name: entry.pokemon.name, url: entry.pokemon.url))
+        }
+    }
 }

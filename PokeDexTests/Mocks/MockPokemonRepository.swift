@@ -4,6 +4,7 @@ final class MockPokemonRepository: PokemonRepositoryProtocol {
     var listResult: PokemonListModel = PokemonListModel(pokemons: [], hasMore: false)
     var detailResult: PokemonDetailModel = .stub()
     var evolutionChainResult: EvolutionChainModel = .stub()
+    var typeResult: [PokemonModel] = []
     var errorToThrow: Error?
     private(set) var fetchCallCount = 0
     private(set) var lastFetchLimit: Int?
@@ -12,6 +13,8 @@ final class MockPokemonRepository: PokemonRepositoryProtocol {
     private(set) var lastFetchDetailName: String?
     private(set) var fetchEvolutionChainCallCount = 0
     private(set) var lastFetchEvolutionChainSpeciesURL: String?
+    private(set) var fetchByTypeCallCount = 0
+    private(set) var lastFetchByType: String?
 
     func fetchPokemons(limit: Int, offset: Int) async throws -> PokemonListModel {
         fetchCallCount += 1
@@ -33,6 +36,13 @@ final class MockPokemonRepository: PokemonRepositoryProtocol {
         lastFetchEvolutionChainSpeciesURL = speciesURL
         if let error = errorToThrow { throw error }
         return evolutionChainResult
+    }
+
+    func fetchPokemonsByType(_ type: String) async throws -> [PokemonModel] {
+        fetchByTypeCallCount += 1
+        lastFetchByType = type
+        if let error = errorToThrow { throw error }
+        return typeResult
     }
 }
 

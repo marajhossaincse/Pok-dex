@@ -5,6 +5,7 @@ enum APIEndpoint {
     case pokemonDetail(name: String)
     case pokemonSpecies(url: String)
     case evolutionChain(url: String)
+    case pokemonType(name: String)
 
     private static let baseURL = "https://pokeapi.co/api/v2"
 
@@ -26,6 +27,11 @@ enum APIEndpoint {
                 return url
             case .pokemonSpecies(let urlString), .evolutionChain(let urlString):
                 guard let url = URL(string: urlString) else { throw APIError.invalidURL }
+                return url
+            case .pokemonType(let name):
+                guard let url = URL(string: "\(Self.baseURL)/type/\(name)") else {
+                    throw APIError.invalidURL
+                }
                 return url
             }
         }

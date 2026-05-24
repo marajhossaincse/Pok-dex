@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710660D42FC38A80001A6229 /* PokemonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710660D32FC38A80001A6229 /* PokemonType.swift */; };
+		710660D62FC38A9C001A6229 /* PokemonTypeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710660D52FC38A9C001A6229 /* PokemonTypeDTO.swift */; };
 		AAAA0000000000000000000C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000001 /* APIError.swift */; };
 		AAAA0000000000000000000D /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000002 /* APIEndpoint.swift */; };
 		AAAA0000000000000000000E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000003 /* APIClient.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		710660D32FC38A80001A6229 /* PokemonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonType.swift; sourceTree = "<group>"; };
+		710660D52FC38A9C001A6229 /* PokemonTypeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeDTO.swift; sourceTree = "<group>"; };
 		71E8F8932FC1F2A600A77B96 /* PokeDexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokeDexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAAA00000000000000000001 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		AAAA00000000000000000002 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				AAAA00000000000000000004 /* PokemonModel.swift */,
 				BBBB00000000000000000001 /* PokemonDetailModel.swift */,
 				CCCC00000000000000000001 /* EvolutionChainModel.swift */,
+				710660D32FC38A80001A6229 /* PokemonType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 				BBBB00000000000000000002 /* PokemonDetailDTO.swift */,
 				CCCC00000000000000000002 /* PokemonSpeciesDTO.swift */,
 				CCCC00000000000000000003 /* EvolutionChainDTO.swift */,
+				710660D52FC38A9C001A6229 /* PokemonTypeDTO.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 				AAAA0000000000000000000E /* APIClient.swift in Sources */,
 				AAAA0000000000000000000F /* PokemonModel.swift in Sources */,
 				AAAA00000000000000000010 /* PokemonRepositoryProtocol.swift in Sources */,
+				710660D42FC38A80001A6229 /* PokemonType.swift in Sources */,
 				AAAA00000000000000000011 /* PokemonListDTO.swift in Sources */,
 				AAAA00000000000000000012 /* PokemonMapper.swift in Sources */,
 				AAAA00000000000000000013 /* PokemonRepository.swift in Sources */,
@@ -367,6 +374,7 @@
 				AAAA00000000000000000016 /* PokemonDetailView.swift in Sources */,
 				BBBB00000000000000000005 /* PokemonDetailModel.swift in Sources */,
 				BBBB00000000000000000006 /* PokemonDetailDTO.swift in Sources */,
+				710660D62FC38A9C001A6229 /* PokemonTypeDTO.swift in Sources */,
 				BBBB00000000000000000007 /* PokemonDetailMapper.swift in Sources */,
 				BBBB00000000000000000008 /* PokemonDetailViewModel.swift in Sources */,
 				CCCC00000000000000000005 /* EvolutionChainModel.swift in Sources */,
