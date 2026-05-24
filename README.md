@@ -15,6 +15,7 @@ A native iOS app built with SwiftUI that lets you browse and explore Pokémon us
   - [Domain](#domain)
   - [Data](#data)
   - [Presentation](#presentation)
+- [Image Caching](#image-caching)
 - [Dependency Flow](#dependency-flow)
 - [Unit Testing Architecture](#unit-testing-architecture)
   - [Testing Philosophy](#testing-philosophy)
@@ -29,8 +30,11 @@ A native iOS app built with SwiftUI that lets you browse and explore Pokémon us
 
 - Browse a paginated list of all Pokémon (1,302+)
 - Infinite scroll with automatic load-more as you reach the end of the list
+- Search Pokémon by name with a native search bar
+- Filter Pokémon by type with horizontally scrollable chip filters (uses PokeAPI's `/type/{name}` endpoint)
+- Two-layer image cache (memory + disk) — sprites load instantly after the first fetch and persist across app launches
 - Error handling with a retry mechanism
-- Loading states during initial fetch and pagination
+- Loading states during initial fetch, pagination, and type filter changes
 - Navigate to an individual Pokémon detail screen
 
 ---
@@ -94,29 +98,35 @@ Pok-dex/
 │   ├── PokeDexApp.swift              # App entry point (@main)
 │   │
 │   ├── Core/
-│   │   └── Network/
-│   │       ├── APIClient.swift       # Protocol + URLSession implementation
-│   │       ├── APIEndpoint.swift     # Enum of all API endpoints
-│   │       └── APIError.swift        # Typed network error enum
+│   │   ├── Network/
+│   │   │   ├── APIClient.swift       # Protocol + URLSession implementation
+│   │   │   ├── APIEndpoint.swift     # Enum of all API endpoints
+│   │   │   └── APIError.swift        # Typed network error enum
+│   │   └── Cache/
+│   │       └── ImageCache.swift      # Two-layer image cache (memory + disk)
 │   │
 │   ├── Domain/
 │   │   ├── Models/
-│   │   │   └── PokemonModel.swift    # Clean domain models (no API coupling)
+│   │   │   ├── PokemonModel.swift    # Clean domain models (no API coupling)
+│   │   │   └── PokemonType.swift     # Enum of all 18 types with display names and colors
 │   │   └── Repositories/
 │   │       └── PokemonRepositoryProtocol.swift  # Repository contract
 │   │
 │   ├── Data/
 │   │   ├── DTOs/
-│   │   │   └── PokemonListDTO.swift  # Raw API response structs (Decodable)
+│   │   │   ├── PokemonListDTO.swift  # Raw API response structs (Decodable)
+│   │   │   └── PokemonTypeDTO.swift  # DTO for /type/{name} endpoint response
 │   │   ├── Mappers/
 │   │   │   └── PokemonMapper.swift   # Translates DTOs into domain models
 │   │   └── Repositories/
 │   │       └── PokemonRepository.swift  # Implements the protocol, calls APIClient
 │   │
 │   └── Presentation/
+│       ├── Components/
+│       │   └── CachedAsyncImage.swift   # Drop-in AsyncImage replacement with cache support
 │       ├── Home/
-│       │   ├── HomeView.swift        # SwiftUI list view + row view
-│       │   └── HomeViewModel.swift   # Pagination state machine (@MainActor)
+│       │   ├── HomeView.swift        # SwiftUI list view + row view + type filter chips
+│       │   └── HomeViewModel.swift   # Pagination, search, and type filter state (@MainActor)
 │       └── PokemonDetail/
 │           └── PokemonDetailView.swift  # Detail screen (expandable)
 │
@@ -274,6 +284,49 @@ Marked `@MainActor` so all published state changes happen on the main thread aut
 
 **`HomeView.swift`**
 Marked `@MainActor` (required in Swift 6 to initialise a `@MainActor` ViewModel from a stored property). Triggers `loadMore()` using `.onAppear` on the last visible row — a simple, dependency-free approach to infinite scroll.
+
+---
+
+## Image Caching
+
+Sprite images are fetched from GitHub's CDN. Without caching, every scroll or app relaunch re-downloads them. The app uses a custom two-layer cache implemented as a Swift `actor` — no third-party dependencies.
+
+### Lookup Chain
+
+Every image request follows the same three-stop chain:
+
+```
+Ask for image
+      │
+      ▼
+1. Memory Cache ──── hit? ──→ return instantly
+      │ miss
+      ▼
+2. Disk Cache ───── hit? ──→ return + promote to memory
+      │ miss
+      ▼
+3. Network ──────── fetch → save to disk + memory → return
+```
+
+### Layers
+
+**Memory (`NSCache<NSString, UIImage>`)**
+Holds up to 150 decoded `UIImage` objects in RAM. Lookup is O(1). NSCache automatically evicts entries under memory pressure — no manual management needed. Does not survive app termination.
+
+**Disk (`FileManager` + `Library/Caches/`)**
+PNG data written to `Library/Caches/PokeDexImageCache/`. Persists across app launches. The OS clears this directory automatically when the device runs low on storage. Cache key is `url.lastPathComponent` — sprite URLs end in `{id}.png` (e.g. `1.png`, `25.png`), which is already unique and human-readable on disk.
+
+### In-Flight Deduplication
+
+`ImageCache` maintains a `[URL: Task<UIImage, Error>]` dictionary. If two views request the same image simultaneously (e.g. a list row and an evolution cell both showing Bulbasaur), only one network call fires. The second caller `await`s the same `Task` and gets the result for free when it completes.
+
+### Components
+
+**`ImageCache` (`Core/Cache/ImageCache.swift`)**
+A Swift `actor` singleton. Thread safety is enforced at compile time — no locks or dispatch queues needed. Owns both cache layers and manages in-flight request deduplication.
+
+**`CachedAsyncImage` (`Presentation/Components/CachedAsyncImage.swift`)**
+A drop-in SwiftUI replacement for `AsyncImage`. Uses the same `AsyncImagePhase`-based closure API so swap-out is mechanical. Uses `.task(id: url)` to automatically cancel and restart when the URL changes, which is important for recycled list rows.
 
 ---
 
